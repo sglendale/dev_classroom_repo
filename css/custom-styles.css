@@ -6,3 +6,21 @@ h3
 {
     text-align: center;
 }
+.notebook 
+{
+    background-image: url("../full_res_notebook_paper.PNG");
+    background-color: #cccccc;
+    background-attachment: fixed;
+
+}
+.jumbotron
+{
+    background-color: darkslategray;
+}
+.jumbotron-text
+{
+    color:white;
+    text-align:center;
+}
+
+  
