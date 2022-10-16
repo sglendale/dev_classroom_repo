@@ -1,8 +1,23 @@
 h3 
 {
     text-align: center;
+    color:white;
+    padding-bottom:10px
 }
 .fs-4 
 {
     text-align: center;
 }
+
+.jumbotron-text{
+    color:white;
+    text-align:center;
+}
+
+    
+.jumbotron{
+    background-color: darkslategray;
+    margin-left: -30px;
+    margin-right: -30px;
+      }
+      
