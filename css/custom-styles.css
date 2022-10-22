@@ -13,8 +13,15 @@ h3
      background-image: url("../full_res_notebook_paper.PNG");
      background-color: #cccccc;
      background-attachment: fixed;
+     background-size: cover;
 }
- 
+.book-light-bulb
+{
+     background-image: url("../book.jpg");
+     background-color: #cccccc;
+     background-attachment: fixed;
+     background-size: cover;
+}
 .credents{
     background-image: url("../full_res_notebook_paper.PNG");
     background-color: #cccccc;
@@ -30,7 +37,10 @@ h3
     color:white;
     text-align:center;
 }
-
+.banner-color
+{
+    background-color: darkslategray;
+}
 .sticky-top
 {
     position: sticky;
@@ -52,4 +62,67 @@ h3
 }
 .form{
         box-sizing: content-box;
+}
+/* Required to prevent body element from being only as big as the elements it contains; currently used in test.html */
+.body-background-fill
+{
+    height:100%;
+    padding:0px;
+    margin:0px;
+}
+/* Use as last class in a div class list to override an unusual padding occurrences; currently used in test.html */
+.make-div-fill-page
+{
+    padding: 0px;
+    height:100vh;
+}
+/* class to custom fit the desired background to viewport; currently used in test.html */
+.fit-image-notebook
+{
+    background-image: url("../full_res_notebook_paper.PNG");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* Remove styling from links */
+a
+{
+    text-decoration:none;
+    color:black; 
+}
+/* Create a mobile responsive centered hero:
+- create a div with class="centered-vertically"
+- within that div, create a new div with class="centered-horizontally"
+- centered hero text is optional, and used to create a centralized text style for headers
+*/
+.centered-vertically
+{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:100%;
+}
+.centered-horizontally 
+{
+    margin: auto;
+    width: 60%;
+    padding: 1em;
+}
+.centered-hero
+{
+    width:100%;
+    text-align: center;
+    margin-top:10%;
+    margin-bottom:10%;
+    color:white;
+}
+.centered-btn-container
+{
+    text-align:center;
+    width:100%;
+}
+/* Assigning min-width to buttons to prevent different sizing if there is little text*/
+.btn.btn-light
+{
+    min-width:7em;
 }
