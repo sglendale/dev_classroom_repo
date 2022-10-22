@@ -84,6 +84,13 @@ h3
     background-size: cover;
     background-repeat: no-repeat;
 }
+.fit-image-amatuer
+{
+    background-image: url("../amatuer_image.jpeg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 /* Remove styling from links */
 a
 {
