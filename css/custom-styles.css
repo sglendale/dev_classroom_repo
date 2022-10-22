@@ -13,8 +13,14 @@ h3
      background-image: url("../full_res_notebook_paper.PNG");
      background-color: #cccccc;
      background-attachment: fixed;
- 
 }
+ 
+.credents{
+    background-image: url("../full_res_notebook_paper.PNG");
+    background-color: #cccccc;
+    background-attachment: fixed;
+    padding-top: 100px;
+}     
 .jumbotron
 {
     background-color: darkslategray;
@@ -33,3 +39,17 @@ h3
     padding-top:40px
 }
 
+.navbar-brand {
+    padding-left: 450px;
+}
+
+.navbar {
+    --bs-navbar-padding-y: 50px;
+    --bs-navbar-brand-font-size: 1.7rem;
+}
+.py-5 {
+    padding-left: 270px;
+}
+.form{
+        box-sizing: content-box;
+}
