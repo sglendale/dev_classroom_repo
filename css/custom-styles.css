@@ -10,20 +10,20 @@ h3
 }
 .notebook 
 {
-     background-image: url("../full_res_notebook_paper.PNG");
+     background-image: url("../images/full_res_notebook_paper.PNG");
      background-color: #cccccc;
      background-attachment: fixed;
      background-size: cover;
 }
 .book-light-bulb
 {
-     background-image: url("../book.jpg");
+     background-image: url("../images/book.jpg");
      background-color: #cccccc;
      background-attachment: fixed;
      background-size: cover;
 }
 .credents{
-    background-image: url("../full_res_notebook_paper.PNG");
+    background-image: url("../images/full_res_notebook_paper.PNG");
     background-color: #cccccc;
     background-attachment: fixed;
     padding-top: 100px;
@@ -79,14 +79,14 @@ h3
 /* class to custom fit the desired background to viewport; currently used in test.html */
 .fit-image-notebook
 {
-    background-image: url("../full_res_notebook_paper.PNG");
+    background-image: url("../images/full_res_notebook_paper.PNG");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
 }
 .fit-image-amatuer
 {
-    background-image: url("../amatuer_image.jpeg");
+    background-image: url("../images/amatuer_image.jpeg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
