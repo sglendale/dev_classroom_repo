@@ -134,3 +134,17 @@ a
 {
     min-width:7em;
 }
+.banner
+{
+    background-color: darkslategray;
+    max-height: 2.5em;
+}
+.m-auto.rounded
+{
+    max-width: 25em;
+}
+.registration-div
+{
+    margin-top:1em;
+    margin-bottom: 1em;
+}
