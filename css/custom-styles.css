@@ -46,7 +46,8 @@ h3
     position: sticky;
     top: 0;
     z-index:1020;
-    padding-top:40px
+    padding-top:40px;
+    height: 100%;
 }
 
 .navbar-brand {
