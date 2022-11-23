@@ -24,7 +24,7 @@ let $homePageBtnDiv = $('<div/>', {
 
 let $registerBtn = $('<button/>', {
     type: 'button',
-    class: 'btn btn-light mb-1',
+    class: 'btn btn-light mb-1 home-page-btn',
 });
 
 let $registerLink = $('<a/>', {
@@ -34,7 +34,7 @@ let $registerLink = $('<a/>', {
 
 let $loginBtn = $('<button/>', {
     type: 'button',
-    class: 'btn btn-light mb-1',
+    class: 'btn btn-light mb-1 home-page-btn',
 });
 
 let $loginLink = $('<a/>', {
@@ -267,7 +267,7 @@ function changeView(){
         $actionBtn.text('Login Now');
         $changeViewBtn.text('Register Here');
         $changeViewBtn.attr('href', '#');
-        $suggestiveText.text('Don\'t Have an Account?');
+        $suggestiveText.text('Don\'t Have an Account? ');
         $suggestiveText.append($changeViewBtn);
         $changeViewBtn.on('click', ()=>{changeView()});
     }
@@ -282,7 +282,7 @@ function changeView(){
         $actionBtn.text('Create My Account');
         $changeViewBtn.text('Login Here');
         $changeViewBtn.attr('href', '#');
-        $suggestiveText.text('Already Have an Account?');
+        $suggestiveText.text('Already Have an Account? ');
         $suggestiveText.append($changeViewBtn);
         $changeViewBtn.on('click', ()=>{changeView()});
     }
@@ -293,7 +293,7 @@ function getRegisterView()
     /* Construct registration view, remove body, and append */
     $actionBtn.text('Create My Account');
     $registerLoginHeader.text('Register');
-    $suggestiveText.text('Already Have an Account?');
+    $suggestiveText.text('Already Have an Account? ');
     $changeViewBtn.attr('href', '#');
     $changeViewBtn.text('Login Here');
     $suggestiveText.append($changeViewBtn);
@@ -310,7 +310,7 @@ function getLoginView()
     /* Construct registration view, remove body, and append */
     $actionBtn.text('Login Now');
     $registerLoginHeader.text('Login');
-    $suggestiveText.text('Don\t Have an Account?');
+    $suggestiveText.text('Don\t Have an Account? ');
     $changeViewBtn.attr('href', '#');
     $changeViewBtn.text('Register Here');
     $suggestiveText.append($changeViewBtn);
