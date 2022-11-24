@@ -48,10 +48,10 @@ $homePageBtnDiv.append($registerBtn, $loginBtn);
 $homePageMainDiv.append($homePageBanner, $homePageBtnDiv);
 $homePageOuterDiv.append($homePageMainDiv);
 
-$('body').append($homePageOuterDiv);
 
 /********************************** Login and Regstration views ********************************************/
 /* Persistent in both registration and login views (begin) */
+
 let $logoDiv = $('<div/>', {
     class: 'banner',
     id: 'logo-banner'
@@ -105,6 +105,18 @@ let $changeViewBtn = $('<a/>', {
     href: '#',
     id: 'change-view',
 });
+
+let $homeP = $('<p/>', {
+    class: 'text-center mt-2',
+    id: 'return-home', 
+});
+
+let $homeLink = $('<a/>', {
+    href: '#',
+    text: 'Return Home',
+});
+
+$homeP.append($homeLink);
 
 /* Persistent in both registration and login views (end) */
 
@@ -270,14 +282,16 @@ function changeView(){
         $suggestiveText.text('Don\'t Have an Account? ');
         $suggestiveText.append($changeViewBtn);
         $changeViewBtn.on('click', ()=>{changeView()});
+        $homeLink.on('click', ()=>{getHomeView()});
     }
     else if($changeViewBtn.text() == "Register Here"){
-        // User was on login view 
+        // User was on login view
+        $homeP.remove(); 
         $form.prepend($lastNameDiv);
         $form.prepend($firstNameDiv);
         $actionBtnDiv.remove();
         $suggestiveText.remove();
-        $form.append($accountTypeDiv, $actionBtnDiv, $suggestiveText);
+        $form.append($accountTypeDiv, $actionBtnDiv, $suggestiveText, $homeP);
         $registerLoginHeader.text('Register'); 
         $actionBtn.text('Create My Account');
         $changeViewBtn.text('Login Here');
@@ -285,47 +299,154 @@ function changeView(){
         $suggestiveText.text('Already Have an Account? ');
         $suggestiveText.append($changeViewBtn);
         $changeViewBtn.on('click', ()=>{changeView()});
+        $homeLink.on('click', ()=>{getHomeView()});
     }
 }
 
 function getRegisterView()
 {
-    /* Construct registration view, remove body, and append */
-    $actionBtn.text('Create My Account');
-    $registerLoginHeader.text('Register');
-    $suggestiveText.text('Already Have an Account? ');
-    $changeViewBtn.attr('href', '#');
-    $changeViewBtn.text('Login Here');
-    $suggestiveText.append($changeViewBtn);
-    $form.append($firstNameDiv, $lastNameDiv, $emailDiv, $passwordDiv, $accountTypeDiv, $actionBtnDiv,$suggestiveText);
-    $mainDiv.append($registerLoginHeader, $form);
-    $outerDiv.append($mainDiv);
-    $logoDiv.append($outerDiv);
-    $homePageOuterDiv.remove();
-    $('body').append($logoDiv); 
+    /* Check what view we are coming from */
+    var $homePageDivExists = $('#home-page-div');
+    var $changeViewBtnExists = $('#change-view');
+
+    if($homePageDivExists)
+    {
+        /* 
+        We are coming from the main page view. 
+        1. Remove $homePageDivExists
+        2. append $logoDiv to body 
+        3. Re-register event listeners for $changeViewBtn to send text and $homeLink
+        */
+
+        /* Construct registration view, remove body, and append */
+        $actionBtn.text('Create My Account');
+        $registerLoginHeader.text('Register');
+        $suggestiveText.text('Already Have an Account? ');
+        $changeViewBtn.attr('href', '#');
+        $changeViewBtn.text('Login Here');
+        $suggestiveText.append($changeViewBtn);
+        $form.append($firstNameDiv, $lastNameDiv, $emailDiv, $passwordDiv, $accountTypeDiv, $actionBtnDiv,$suggestiveText, $homeP);
+        $mainDiv.append($registerLoginHeader, $form);
+        $outerDiv.append($mainDiv);
+        $logoDiv.append($outerDiv);
+
+        $homePageDivExists.remove();
+        $('body').append($logoDiv);
+        $changeViewBtn.on('click', ()=>{changeView()});
+        $homeLink.on('click', ()=>{getHomeView()}); 
+    }
+    else if($changeViewBtnExists && $changeViewBtnExists.text()=="Register Here")
+    {
+        /* 
+        We are coming from the login view. 
+        1. Update $registerLoginHeader 
+        2. Reconstruct form
+        3. Re-register event listeners for $changeViewBtn and $homeLink 
+        */
+
+        // User was on login view
+        $homeP.remove(); 
+        $form.prepend($lastNameDiv);
+        $form.prepend($firstNameDiv);
+        $actionBtnDiv.remove();
+        $suggestiveText.remove();
+        $form.append($accountTypeDiv, $actionBtnDiv, $suggestiveText, $homeP);
+        $registerLoginHeader.text('Register'); 
+        $actionBtn.text('Create My Account');
+        $changeViewBtn.text('Login Here');
+        $changeViewBtn.attr('href', '#');
+        $suggestiveText.text('Already Have an Account? ');
+        $suggestiveText.append($changeViewBtn);
+        $changeViewBtn.on('click', ()=>{changeView()});
+        $homeLink.on('click', ()=>{getHomeView()});
+    }
+    else
+    {
+        /* Someone hacky self-clicked. Do nothing */
+    }
 }
 
 function getLoginView()
 {
-    /* Construct registration view, remove body, and append */
-    $actionBtn.text('Login Now');
-    $registerLoginHeader.text('Login');
-    $suggestiveText.text('Don\t Have an Account? ');
-    $changeViewBtn.attr('href', '#');
-    $changeViewBtn.text('Register Here');
-    $suggestiveText.append($changeViewBtn);
-    $form.append($emailDiv, $passwordDiv,$actionBtnDiv,$suggestiveText);
-    $mainDiv.append($registerLoginHeader, $form);
-    $outerDiv.append($mainDiv);
-    $logoDiv.append($outerDiv);
-    $homePageOuterDiv.remove();
-    $('body').append($logoDiv);  
+    /* Check what view we are coming from */
+    var $homePageDivExists = $('#home-page-div');
+    var $changeViewBtnExists = $('#change-view');
+
+    if($homePageDivExists !=null && $homePageDivExists != undefined)
+    {
+        /* 
+        We are coming from the main page view. 
+        1. Remove $homePageDivExists
+        2. append $logoDiv to body 
+        3. Re-register event listeners for $changeViewBtn to send text and $homeLink
+        */
+
+        /* Construct login view, remove body, and append */
+        $actionBtn.text('Login Now');
+        $registerLoginHeader.text('Login');
+        $suggestiveText.text('Don\'t Have an Account? ');
+        $changeViewBtn.attr('href', '#');
+        $changeViewBtn.text('Register Here');
+        $suggestiveText.append($changeViewBtn);
+        if($form.children().length > 0)
+        {
+            $form.empty();
+        }
+        $form.append($emailDiv, $passwordDiv, $actionBtnDiv,$suggestiveText, $homeP);
+        $mainDiv.append($registerLoginHeader, $form);
+        $outerDiv.append($mainDiv);
+        $logoDiv.append($outerDiv);
+
+        $homePageDivExists.remove();
+        $('body').append($logoDiv);
+        $changeViewBtn.on('click', ()=>{changeView()});
+        $homeLink.on('click', ()=>{getHomeView()}); 
+    }
+    else if($changeViewBtnExists != null && $changeViewBtnExists !=undefined && $changeViewBtnExists.text()=="Login Here")
+    {
+        /* 
+        We are coming from the registration view. 
+        1. Update $registerLoginHeader 
+        2. Reconstruct form
+        3. Re-register event listeners for $changeViewBtn and $homeLink 
+        */
+    
+        /* Construct registration view, remove body, and append */
+        $homeP.remove(); 
+        $actionBtn.text('Login Now');
+        $registerLoginHeader.text('Login');
+        $suggestiveText.text('Don\'t Have an Account? ');
+        $changeViewBtn.attr('href', '#');
+        $changeViewBtn.text(' Register Here');
+        $suggestiveText.append($changeViewBtn);
+        $form.append($emailDiv, $passwordDiv,$actionBtnDiv,$suggestiveText, $homeP);
+        $mainDiv.append($registerLoginHeader, $form);
+        $outerDiv.append($mainDiv);
+        $logoDiv.append($outerDiv);
+        $homePageOuterDiv.remove();
+        $('body').append($logoDiv);
+        $changeViewBtn.on('click', ()=>{changeView()});
+        $homeLink.on('click', ()=>{getHomeView()});   
+    }
+    else
+    {
+        /* Someone hacky self-clicked. Do nothing. */
+    }
 }
 
+function getHomeView()
+{
+    $logoDiv.remove();
+    $('body').append($homePageOuterDiv);
+    $registerLink.on('click', ()=>{getRegisterView()});
+    $loginLink.on('click', ()=>{getLoginView()});   
+}
 
-$changeViewBtn.on('click', ()=>{changeView()});
+$('body').append($homePageOuterDiv);
+
 $registerLink.on('click', ()=>{getRegisterView()});
 $loginLink.on('click', ()=>{getLoginView()});
+$homeLink.on('click', ()=>{getHomeView()});
 
 
 
