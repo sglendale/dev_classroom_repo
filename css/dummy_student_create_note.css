@@ -1,0 +1,312 @@
+h3 
+{
+    text-align: center;
+    color:white;
+    padding-bottom:27px
+}
+.d-flex
+{
+    font-size: 24px;
+}
+.notebook 
+{
+     background-image: url("../images/full_res_notebook_paper.PNG");
+     background-color: #cccccc;
+     background-attachment: fixed;
+     background-size: cover;
+}
+.book-light-bulb
+{
+     background-image: url("../images/book.jpg");
+     background-color: #cccccc;
+     background-attachment: fixed;
+     background-size: cover;
+}
+.credents{
+    background-image: url("../images/full_res_notebook_paper.PNG");
+    background-color: #cccccc;
+    background-attachment: fixed;
+    padding-top: 100px;
+}     
+.jumbotron
+{
+    background-color: darkslategray;
+}
+.jumbotron-text
+{
+    color:white;
+    text-align:center;
+}
+.banner-color
+{
+    background-color: darkslategray;
+}
+.sticky-top
+{
+    position: sticky;
+    top: 0;
+    z-index:1020;
+    padding-top:40px;
+    height: 100%;
+}
+
+.navbar-brand {
+    padding-left: 450px;
+}
+
+.navbar {
+    --bs-navbar-padding-y: 50px;
+    --bs-navbar-brand-font-size: 1.7rem;
+}
+.py-5 {
+    padding-left: 270px;
+}
+.form{
+        box-sizing: content-box;
+}
+/* Required to prevent body element from being only as big as the elements it contains; currently used in test.html */
+.body-background-fill
+{
+    height:100%;
+    padding:0px;
+    margin:0px;
+}
+/* Use as last class in a div class list to override an unusual padding occurrences; currently used in test.html */
+.make-div-fill-page
+{
+    padding: 0px;
+    height:100vh;
+}
+/* class to custom fit the desired background to viewport; currently used in test.html */
+.fit-image-notebook
+{
+    background-image: url("../images/full_res_notebook_paper.PNG");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.fit-image-amatuer
+{
+    background-image: url("../images/amatuer_image.jpeg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* Remove styling from links */
+a
+{
+    text-decoration:none;
+    color:black; 
+}
+/* Create a mobile responsive centered hero:
+- create a div with class="centered-vertically"
+- within that div, create a new div with class="centered-horizontally"
+- centered hero text is optional, and used to create a centralized text style for headers
+*/
+.centered-vertically
+{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:100%;
+}
+.centered-horizontally 
+{
+    margin: auto;
+    width: 60%;
+    padding: 1em;
+}
+.centered-hero
+{
+    width:100%;
+    text-align: center;
+    margin-top:2%;
+    margin-bottom:2%;
+    color:white;
+}
+.centered-btn-container
+{
+    text-align:center;
+    width:100%;
+    
+}
+/* Assigning min-width to buttons to prevent different sizing if there is little text*/
+.btn.btn-light
+{
+    min-width:7em;
+}
+.banner
+{
+    background-color: darkslategray;
+    max-height: 2.5em;
+}
+.m-auto.rounded
+{
+    max-width: 25em;
+}
+.registration-div
+{
+    margin-top:1em;
+    margin-bottom: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+/*dummy_student_create_note.css*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+* {
+box-sizing: border-box;
+outline: none;
+}
+
+body {
+
+font-family: 'Poppins', sans-serif;
+display: flex;
+flex-wrap: wrap;
+}
+
+.add {
+position: fixed;
+top: 1rem;
+right: 1rem;
+background-color: darkslategray;
+color: #fff;
+border: none;
+border-radius: 3px;
+padding: 0.5rem 1rem;
+cursor: pointer;
+}
+.add:active {
+transform: scale(0.98);
+}
+.note {
+background-color: #fff;
+box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
+margin: 30px 20px;
+height: 400px;
+width: 400px;
+overflow-y: scroll;
+}
+.note .tools {
+background-color: darkslategray;
+display: flex;
+justify-content: flex-end;
+padding: 0.5rem;
+}
+.note .tools button {
+background-color: transparent;
+border: none;
+color: #fff;
+cursor: pointer;
+font-size: 1rem;
+margin-left: 0.5rem;
+}
+.note textarea {
+outline: none;
+font-family: inherit;
+font-size: 1.2rem;
+border: none;
+height: 400px;
+width: 100%;
+padding: 20px;
+}
+.main {
+padding: 20px;
+}
+.hidden {
+display: none;
+}
+/* Required to prevent body element from being only as big as the elements it contains; currently used in test.html */
+.body-background-fill
+{
+    height:100%;
+    padding:0px;
+    margin:0px;
+}
+/* Use as last class in a div class list to override an unusual padding occurrences; currently used in test.html */
+.make-div-fill-page
+{
+    padding: 0px;
+    height:100vh;
+}
+/* class to custom fit the desired background to viewport; currently used in test.html */
+.fit-image-notebook
+{
+    background-image: url("../images/full_res_notebook_paper.PNG");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.fit-image-amatuer
+{
+    background-image: url("../images/amatuer_image.jpeg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* Remove styling from links */
+a
+{
+    text-decoration:none;
+    color:black; 
+}
+/* Create a mobile responsive centered hero:
+- create a div with class="centered-vertically"
+- within that div, create a new div with class="centered-horizontally"
+- centered hero text is optional, and used to create a centralized text style for headers
+*/
+.centered-vertically
+{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:100%;
+}
+.centered-horizontally 
+{
+    margin: auto;
+    width: 60%;
+    padding: 1em;
+}
+.centered-hero
+{
+    width:100%;
+    text-align: center;
+    margin-top:2%;
+    margin-bottom:2%;
+    color:white;
+}
+.centered-btn-container
+{
+    text-align:center;
+    width:100%;
+    
+}
+/* Assigning min-width to buttons to prevent different sizing if there is little text*/
+.btn.btn-light
+{
+    min-width:7em;
+}
+.banner
+{
+    background-color: darkslategray;
+    max-height: 2.5em;
+}
+.m-auto.rounded
+{
+    max-width: 25em;
+}
+.registration-div
+{
+    margin-top:1em;
+    margin-bottom: 1em;
+
+}
