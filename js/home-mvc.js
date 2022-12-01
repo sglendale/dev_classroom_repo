@@ -1,3 +1,55 @@
+function Register()
+{
+    var firstname = $firstNameInput[0].value;
+    var lastname = $lastNameInput[0].value;
+    var uname = $emailInput[0].value;
+    var pass = $passwordInput[0].value;
+    var accountType = $accountTypeSelect[0].value;
+
+    var body = {"new_user": 
+        {
+            
+        }
+    }
+
+    // Contruct fetch parameters
+    const resourceURL = "http://localhost:56789/register";
+    const options = 
+        {
+            method: 'PUT',
+            mode: 'no-cors',
+            headers: {
+                'content-type' : "application/json; charset=UTF-8",
+                // Authorizaation typically goes here
+            },
+            body: null
+        }
+
+    // Pass parameters to fetch
+    try 
+    {
+        fetch(resourceURL, options)
+        .then(async function (response, err){
+            if(response.ok)
+            {
+                return response.json();
+            }
+            else
+            {
+                throw err;
+            }
+        }).then(function(data){
+            var tableData = document.getElementById('response_json');
+            tableData.innerHTML = "name: " + data.name + "; age: " + data.age;
+        });
+    }
+    catch(err)
+    {
+        console.log("The following error occured while trying to fetch: ", err);
+    }
+
+}
+
 /************************************************* Home Page View ******************************************************/
 
 /* Adding for main page, in the event that users want to go back to the main page */
