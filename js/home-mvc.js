@@ -66,6 +66,53 @@ function Register()
 
 }
 
+function Login()
+{
+    // Get values from registration form.
+    var uname = $emailInput[0].value;
+    var pass = $passwordInput[0].value;
+
+    // Construct body with input.
+    var reqBody = { "login" : 
+                    {
+                        "email": uname,
+                        "password": pass,
+                    }
+                };
+
+    // Construct fetch parameters.
+    const resourceURL = "http://localhost:56789/login";   
+    const options = 
+        {
+            method: 'POST',
+            mode: 'cors',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(reqBody),
+        }
+
+    // Pass parameters to fetch.
+    try 
+    {
+        fetch(resourceURL, options)
+        .then(async function (response, err){
+            if(response.ok)
+            {
+                window.location.replace("dummyTesting.html");
+            }
+            else
+            {
+                throw err;
+            }
+        });
+    }
+    catch(err)
+    {
+        /* Append error instead of console log */
+        console.log("The following error occured while trying to fetch: ", err);
+    }
+
+}
+
 /************************************************* Home Page View ******************************************************/
 
 /* Adding for main page, in the event that users want to go back to the main page */
@@ -351,6 +398,7 @@ function changeView(){
         $suggestiveText.append($changeViewBtn);
         $changeViewBtn.on('click', ()=>{changeView()});
         $homeLink.on('click', ()=>{getHomeView()});
+        $actionBtn.on('click', ()=>{Login()});
     }
     else if($changeViewBtn.text() == "Register Here"){
         // User was on login view
@@ -368,6 +416,9 @@ function changeView(){
         $suggestiveText.append($changeViewBtn);
         $changeViewBtn.on('click', ()=>{changeView()});
         $homeLink.on('click', ()=>{getHomeView()});
+        $actionBtn.on('click', ()=>{Register()});
+
+
     }
 }
 
@@ -471,6 +522,7 @@ function getLoginView()
         $('body').append($logoDiv);
         $changeViewBtn.on('click', ()=>{changeView()});
         $homeLink.on('click', ()=>{getHomeView()}); 
+        $actionBtn.on('click', ()=>{Login()});
     }
     else if($changeViewBtnExists != null && $changeViewBtnExists !=undefined && $changeViewBtnExists.text()=="Login Here")
     {
@@ -496,7 +548,8 @@ function getLoginView()
         $homePageOuterDiv.remove();
         $('body').append($logoDiv);
         $changeViewBtn.on('click', ()=>{changeView()});
-        $homeLink.on('click', ()=>{getHomeView()});   
+        $homeLink.on('click', ()=>{getHomeView()}); 
+        $actionBtn.on('click', ()=>{Login()});  
     }
     else
     {
