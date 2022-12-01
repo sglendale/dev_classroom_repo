@@ -1,50 +1,66 @@
 function Register()
 {
+    // Get values from registration form.
     var firstname = $firstNameInput[0].value;
     var lastname = $lastNameInput[0].value;
     var uname = $emailInput[0].value;
     var pass = $passwordInput[0].value;
-    var accountType = $accountTypeSelect[0].value;
+    var typeSelection = $accountTypeSelect[0].value;
+    var accountType;
 
-    var body = {"new_user": 
-        {
-            
-        }
+    // Set account type based on selection.
+    if(typeSelection == "Student Account")
+    {
+        accountType = 1;
+    }
+    else if(typeSelection == "Instructor Account")
+    {
+        accountType = 2;
+    }
+    else /* User selected no account type: append error alert to screen and return. */ 
+    {
+        return -1;
     }
 
-    // Contruct fetch parameters
-    const resourceURL = "http://localhost:56789/register";
+    // Construct body with input.
+    var reqBody = { "register" : 
+                    {
+                        "email": uname,
+                        "password": pass,
+                        "accountType": 1,
+                        "firstName": firstname,
+                        "lastName": lastname
+                    }
+                };
+
+    // Construct fetch parameters.
+    const resourceURL = "http://localhost:56789/register";   
     const options = 
         {
-            method: 'PUT',
-            mode: 'no-cors',
-            headers: {
-                'content-type' : "application/json; charset=UTF-8",
-                // Authorizaation typically goes here
-            },
-            body: null
+            method: 'POST',
+            mode: 'cors',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(reqBody),
         }
 
-    // Pass parameters to fetch
+    // Pass parameters to fetch.
     try 
     {
         fetch(resourceURL, options)
         .then(async function (response, err){
             if(response.ok)
             {
-                return response.json();
+                window.location.replace("dummyTesting.html");
             }
             else
             {
                 throw err;
             }
-        }).then(function(data){
-            var tableData = document.getElementById('response_json');
-            tableData.innerHTML = "name: " + data.name + "; age: " + data.age;
         });
     }
     catch(err)
     {
+        /* Append error instead of console log */
         console.log("The following error occured while trying to fetch: ", err);
     }
 
@@ -216,7 +232,7 @@ let $passwordIcon = $('<i/>', {
 let $passwordInput = $('<input/>', {
     class: 'form-control',
     id: 'password-input',
-    type: 'text',
+    type: 'password',
     placeholder: 'Password',
 });
 
@@ -385,7 +401,8 @@ function getRegisterView()
         $homePageDivExists.remove();
         $('body').append($logoDiv);
         $changeViewBtn.on('click', ()=>{changeView()});
-        $homeLink.on('click', ()=>{getHomeView()}); 
+        $homeLink.on('click', ()=>{getHomeView()});
+        $actionBtn.on("click", ()=>{Register()}); 
     }
     else if($changeViewBtnExists && $changeViewBtnExists.text()=="Register Here")
     {
@@ -411,6 +428,7 @@ function getRegisterView()
         $suggestiveText.append($changeViewBtn);
         $changeViewBtn.on('click', ()=>{changeView()});
         $homeLink.on('click', ()=>{getHomeView()});
+        $actionBtn.on("click", ()=>{Register()}); 
     }
     else
     {
