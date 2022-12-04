@@ -192,44 +192,45 @@ class App{
     saveNotes(){
         //JSON.stringify turns note into a string
         localStorage.setItem('notes', JSON.stringify(this.notes))
+        //POST request to be sent to backend .
         
     }
-    displayNotes(){
+    // displayNotes(){
 
-        const hasNotes=localStorage.getItem('notes') !==null ? (localStorage.getItem('notes').length>0) : false
-        this.$placeholder.style.display= hasNotes ? 'none' : 'flex';
-        console.log(hasNotes,localStorage.getItem('notes'))
-        const currentData = JSON.parse(localStorage.getItem("notes"))
-        this.$notes.innerHTML=""
-        if (currentData !== null){
+    //     const hasNotes=localStorage.getItem('notes') !==null ? (localStorage.getItem('notes').length>0) : false
+    //     this.$placeholder.style.display= hasNotes ? 'none' : 'flex';
+    //     console.log(hasNotes,localStorage.getItem('notes'))
+    //     const currentData = JSON.parse(localStorage.getItem("notes"))
+    //     this.$notes.innerHTML=""
+    //     if (currentData !== null){
             
-            currentData.forEach((note) => {
-                let component = `
+    //         currentData.forEach((note) => {
+    //             let component = `
                 
-                    <div style="background: ${note.color}; width:200px; overflow-x: auto; margin:20px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="note" data-id="${note.id}">
-                        <div class="content" style="text-align:center;">
-                            <input id="title-${note.id}" style="background:white; border: none;" class="${note.title && 'note-title'}" disabled value=${note.title} type="text">
-                            <input id="content-${note.id}" style="background:white; border: none;" class="note-text" disabled value='${note.text}' type="text">
+    //                 <div style="background: ${note.color}; width:200px; overflow-x: auto; margin:20px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="note" data-id="${note.id}">
+    //                     <div class="content" style="text-align:center;">
+    //                         <input id="title-${note.id}" style="background:white; border: none;" class="${note.title && 'note-title'}" disabled value=${note.title} type="text">
+    //                         <input id="content-${note.id}" style="background:white; border: none;" class="note-text" disabled value='${note.text}' type="text">
                             
-                        </div>
-                        <div class="toolbar-container">
-                            <div class="toolbar">
-                                <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Edit</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Delete</button>
-                            </div>
-                        </div>
-                    </div>
+    //                     </div>
+    //                     <div class="toolbar-container">
+    //                         <div class="toolbar">
+    //                             <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Edit</button>
+    //                             <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Delete</button>
+    //                         </div>
+    //                     </div>
+    //                 </div>
 
-            `
+    //         `
             
-            this.$notes.innerHTML += component
-            //adding .join("") will get rid of the commas between our arrays
-            // .join("");
-            });
+    //         this.$notes.innerHTML += component
+    //         //adding .join("") will get rid of the commas between our arrays
+    //         // .join("");
+    //         });
            
-        }
+    //     }
         
-    }
+    // }
 }
 
 new App();

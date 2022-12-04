@@ -140,6 +140,12 @@ a
     background-color: darkslategray;
     max-height: 2.5em;
 }
+
+.main-header {
+    vertical-align: middle !important;
+    text-align: center;
+    color: white;
+}
 .m-auto.rounded
 {
     max-width: 25em;

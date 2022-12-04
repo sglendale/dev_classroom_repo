@@ -39,12 +39,13 @@ main{
     border-radius: 2px;
     border:0.5px solid #d3d3d3;
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),
-    0 2px 6px 2px rgba(60,64,67,0.149);
-    margin: 32px auto 16px auto;
-    max-width: 500px;
+    0 2px 6px 2px rgba(24, 40, 53, 0.149);
+    margin: 32px auto 16px 25px;
+    /* max-width: 500px; */
     transition-duration: 0.218s;
     transition-property: background,border,opacity,box-shadow,transform;
     transition-timing-function: ease-in;
+    min-width: 1070px;
 }
 
 #form{
@@ -172,4 +173,17 @@ input:focus{
 #save-button{
     color: white;
     background-color: #007bff;
+}
+
+.main-header {
+
+    vertical-align: middle !important;
+    text-align: center;
+    color:white;
+}
+
+.banner
+{
+    background-color: darkslategray;
+    max-height: 1.4em;
 }
