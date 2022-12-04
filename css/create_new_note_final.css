@@ -71,6 +71,7 @@ header{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-left: 100px;
 }
 #note-text{
     width: calc(100%);
@@ -124,7 +125,7 @@ header{
 }
 #note-title{
     /* display: none; */
-    width: calc(100%);
+    width: calc(90%);
     min-height: 43px;
     margin: 0 5px;
     padding: 10px 10px;

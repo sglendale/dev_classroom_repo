@@ -1,9 +1,9 @@
 class App{
     constructor(){
         this.notes=[]
-        
+        localStorage.clear()
         if (localStorage.getItem('notes') !== null){
-            this.notes=[localStorage.getItem('notes')]
+            this.notes=JSON.parse(localStorage.getItem('notes'))
         }
         
         console.log(this.notes)
@@ -57,16 +57,7 @@ class App{
             }
             event.stopImmediatePropagation()
         })
-        //Event Listener to clear the form when submitted
-        this.$form.addEventListener("save", event =>{
-            //to prevent the default event of refreshing when submitted add event
-            
-            //get input from id=note-title and id= note-text
-            
-            //conditional to make sure the text in the title or text space
-            
-        });
-
+        
         //close form once note added adedd
         this.$formCloseButton.addEventListener("click", event => {
             //allows form to close and over ride isFormClicked method
@@ -91,10 +82,12 @@ class App{
             this.openForm();
         }else if(hasNote) {
             //if we have a note,add it to the board
+            alert("title or text")
             this.addNote({title, text});
         } else {
             this.closeForm();
         }
+        event.stopImmediatePropagation()
     }
 
     openForm() {
@@ -129,7 +122,8 @@ class App{
     }
 
     addNote({title,text}) {
-        console.log(this.notes)
+        alert(title)
+        
         //add note data
         const newNote={
             title,
@@ -138,10 +132,13 @@ class App{
             id:this.notes.length > 0 ? this.notes[this.notes.length-1].id + 1 :1
         };
         //add new note to our array along with previous notes
+        console.log("add"+ this.notes , newNote, this.notes.length)
+
+        // this.notes.push(newNote)
         this.notes=[...this.notes, newNote];
 
         //display Notes on the screen
-
+        console.log("add note"+this.notes)
         // Place holder
         this.saveNotes();
         this.displayNotes()
@@ -208,17 +205,20 @@ class App{
             
             currentData.forEach((note) => {
                 let component = `
-                <div style="background: ${note.color}; width:200px;" class="note box-shadow" data-id="${note.id}">
-                    <div class="${note.title && 'note-title'}">${note.title}</div>
-                    <div class="note-text">${note.text}</div>
-                    <div class="toolbar-container">
-                    <div class="toolbar">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Edit</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Delete</button>
+                
+                    <div style="background: ${note.color}; width:200px; overflow-x: auto; margin:20px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="note" data-id="${note.id}">
+                        <div class="content" style="text-align:center;">
+                            <input id="title-${note.id}" style="background:white; border: none;" class="${note.title && 'note-title'}" disabled value=${note.title} type="text">
+                            <input id="content-${note.id}" style="background:white; border: none;" class="note-text" disabled value='${note.text}' type="text">
+                            
+                        </div>
+                        <div class="toolbar-container">
+                            <div class="toolbar">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Edit</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Delete</button>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
-
 
             `
             
