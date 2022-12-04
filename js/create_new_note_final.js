@@ -1,49 +1,70 @@
 class App{
     constructor(){
-        this.notes=JSON.parse(localStorage.getItem('notes')) || [];
+        this.notes=[]
+        
+        if (localStorage.getItem('notes') !== null){
+            this.notes=[localStorage.getItem('notes')]
+        }
+        
+        console.log(this.notes)
+        
         this.title="";
         this.text="";
         this.id="";
         this.$placeholder=document.querySelector("#placeholder");
         this.$form=document.querySelector("#form");
         this.$notes=document.querySelector("#notes");
-        this.$noteTitle=document.querySelector("#noteTitle");
-        this.$noteText=document.querySelector("#noteText");
-        this.$formButtons=document.querySelector("#form-buttons");
+        this.$noteTitle=document.querySelector("#note-title");
+        this.$noteText=document.querySelector("#note-text");
+        this.$formButtons=document.querySelector("#form-button");
         this.$formCloseButton=document.querySelector("#form-close-button");
         this.$modal=document.querySelector(".modal");
         this.$modalTitle=document.querySelector(".modal-title");
         this.$modalText=document.querySelector(".modal-text");
         this.$modalCloseButton=document.querySelector(".modal-close-button");
-        this.render();
+        this.$saveData=document.querySelector("#save-button");
+        // Place holder
+        this.displayNotes()
+        // this.render();
         this.addEventListeners();
+        
+        
     }
 
     addEventListeners(){
+        
         document.body.addEventListener("click",event => {
             //event=> to get an event and pass it to call back
             this.handleFormClick(event);
-            //populates the modal with information contained on note
-            this.selectorNote(event);
+            
             //open the Modal when clicked on note
             this.openModal(event);
+            event.stopImmediatePropagation()
             //delete a note with trash icon
-            this.deleteNote(event);
+            // to be added to the event handler function of delete butto
+            // this.deleteNote(event);
         });
 
-        //Event Listener to clear the form when submitted
-        this.$form.addEventListener("save", event =>{
-            //to prevent the default event of refreshing when submitted add event
+        this.$saveData.addEventListener("click", (event)=> {
+            
             event.preventDefault();
-            //get input from id=note-title and id= note-text
             const title=this.$noteTitle.value;
             const text=this.$noteText.value;
-            //conditional to make sure the text in the title or text space
-            const hasNote=title || text;
-            if(hasnote){
+            const hasNote = title || text;
+            if(hasNote){
                 //add note
                 this.addNote({title, text});
             }
+            event.stopImmediatePropagation()
+        })
+        //Event Listener to clear the form when submitted
+        this.$form.addEventListener("save", event =>{
+            //to prevent the default event of refreshing when submitted add event
+            
+            //get input from id=note-title and id= note-text
+            
+            //conditional to make sure the text in the title or text space
+            
         });
 
         //close form once note added adedd
@@ -108,6 +129,7 @@ class App{
     }
 
     addNote({title,text}) {
+        console.log(this.notes)
         //add note data
         const newNote={
             title,
@@ -117,20 +139,30 @@ class App{
         };
         //add new note to our array along with previous notes
         this.notes=[...this.notes, newNote];
+
         //display Notes on the screen
-        this.render();
+
+        // Place holder
+        this.saveNotes();
+        this.displayNotes()
+        // this.render();
         //closes form after entering a note
         this.closeForm();
     }
 
     editNote(){
+        alert("edit note")
         const title=this.$modalTitle.value;
         const text=this.$modalText.value;
         this.notes=this.notes.map(note =>
             //need to convert id from string to number
             note.id===Number(this.id)?{ ...note, title, text} : note
             );
-            this.render();
+            // Place holder
+            this.saveNotes();
+            this.displayNotes()
+            // this.render();
+            
     }
 
     //open the selected note in modal
@@ -143,11 +175,16 @@ class App{
     }
 
     deleteNote(event){
+        
         event.stopPropagation();
         if(!event.target.matches('.toolbar-delete')) return;
         const id= event.target.dataset.id;
         this.notes=this.notes.filter(note=>note.id !== Number(id));
-        this.render();
+        // this.render();
+        // Place holder
+        this.saveNotes();
+        this.displayNotes()
+        
     }
 
     render(){
@@ -158,22 +195,40 @@ class App{
     saveNotes(){
         //JSON.stringify turns note into a string
         localStorage.setItem('notes', JSON.stringify(this.notes))
+        
     }
     displayNotes(){
-        const hasNotes=this.notes.length>0;
+
+        const hasNotes=localStorage.getItem('notes') !==null ? (localStorage.getItem('notes').length>0) : false
         this.$placeholder.style.display= hasNotes ? 'none' : 'flex';
-        this.$notes.innerHTML=this.notes.map(note =>`
-        <div style="background: ${note.color};" class="note" data-id="${note.id}">
-            <div class="${note.title && 'note-title'}">${note.title}</div>
-            <div class="note-text">${note.text}</div>
-            <div class="toolbar-container">
-            <div class="toolbar">
-                <i class="toolbar-color material-icons" data-id=${note.id}>edit</i>
-                <i class="toolbar-delete material-icons" data-id=${note.id}>delete</i>
-            </div>
-            </div>
-        </div>
-        `).join("");//adding .join("") will get rid of the commas between our arrays
+        console.log(hasNotes,localStorage.getItem('notes'))
+        const currentData = JSON.parse(localStorage.getItem("notes"))
+        this.$notes.innerHTML=""
+        if (currentData !== null){
+            
+            currentData.forEach((note) => {
+                let component = `
+                <div style="background: ${note.color}; width:200px;" class="note box-shadow" data-id="${note.id}">
+                    <div class="${note.title && 'note-title'}">${note.title}</div>
+                    <div class="note-text">${note.text}</div>
+                    <div class="toolbar-container">
+                    <div class="toolbar">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Edit</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-id=${note.id} id=${note.id}>Delete</button>
+                    </div>
+                    </div>
+                </div>
+
+
+            `
+            
+            this.$notes.innerHTML += component
+            //adding .join("") will get rid of the commas between our arrays
+            // .join("");
+            });
+           
+        }
+        
     }
 }
 

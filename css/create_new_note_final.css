@@ -123,7 +123,7 @@ header{
     padding: 4px 16px 12px 0px;
 }
 #note-title{
-    display: none;
+    /* display: none; */
     width: calc(100%);
     min-height: 43px;
     margin: 0 5px;
